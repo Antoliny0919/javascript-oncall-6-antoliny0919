@@ -26,7 +26,7 @@ export class Calendar {
     this.startDay = startDay;
     this.lastDay = this.#getLastDay(month);
     const startDayNumber = DAY_TO_NUMBER[startDay];
-    this.dayList = this.#createDayList(month, startDayNumber);
+    this.dayList = this.#createDayList(startDayNumber);
   }
 
   #getLastDay(month) {
@@ -38,7 +38,7 @@ export class Calendar {
     return Number(lastDay);
   }
 
-  #createDayList(month, startDayNumber) {
+  #createDayList(startDayNumber) {
     const dayNumberList = [];
     for (let dayNumber = startDayNumber; dayNumber < 7; dayNumber++) {
       dayNumberList.push(dayNumber);
@@ -52,7 +52,7 @@ export class Calendar {
     const dayList = Array.from(
       {length: this.lastDay},
       (_, i) => {
-        return new Day(month, NUMBER_TO_DAY[dayNumberList.shift()], i+1)
+        return new Day(this.month, NUMBER_TO_DAY[dayNumberList.shift()], i+1)
       }
     );
     return dayList;
