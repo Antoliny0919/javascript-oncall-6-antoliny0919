@@ -10,12 +10,34 @@ const DAY_TO_NUMBER = {
 
 const NUMBER_TO_DAY = ['일', '월', '화', '수', '목', '금', '토'];
 
+const PUBLIC_HOLIDAY = {
+  '1': [1],
+  '2': [],
+  '3': [1],
+  '4': [],
+  '5': [5],
+  '6': [6],
+  '7': [],
+  '8': [15],
+  '9': [],
+  '10': [3, 9],
+  '11': [],
+  '12': [25],
+}
+
 export class Day {
   constructor(month, dayStr, dayNum) {
     this.month = month;
     this.dayStr = dayStr;
     this.dayNum = dayNum;
-    this.holiday = false;
+    this.holiday = this.#isHoliday(month, dayStr, dayNum);
+  }
+
+  #isHoliday(month, dayStr, dayNum) {
+    const public_holiday = PUBLIC_HOLIDAY[month];
+    if (['토', '일'].includes(dayStr)) return true;
+    if (public_holiday.includes(dayNum)) return true;
+    return false;
   }
 }
 

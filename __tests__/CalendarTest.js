@@ -42,3 +42,16 @@ describe('Calendar Tests', () => {
     expect(dayList[30].dayNum).toBe(31);
   });
 });
+
+describe('Day Tests', () => {
+  test('holiday property test', () => {
+    let day = new Day('5', '월', 1);
+    expect(day.holiday).toBe(false);
+    day = new Day('5', '토', 1);
+    expect(day.holiday).toBe(true);
+    day = new Day('5', '일', 1);
+    expect(day.holiday).toBe(true);
+    day = new Day('5', '화', 5);
+    expect(day.holiday).toBe(true);
+  });
+});
