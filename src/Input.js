@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils'
 import Output from './Output.js';
-import OnCallDateValidator from './Validator.js';
+import { OnCallDateValidator, OnCallMemberValidator } from './Validator.js';
 
 
 const Input = {
@@ -17,6 +17,18 @@ const Input = {
       }
     }
   },
+  async readMemberNames() {
+    while(true) {
+      try {
+        const weekdayMemberInput = await Console.readLineAsync('평일 비상 근무 순번대로 사원 닉네임을 입력하세요> ');
+        const weekendMemberInput = await Console.readLineAsync('휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ');
+        OnCallMemberValidator.validate(weekdayMemberInput, weekendMemberInput);
+        return [weekdayMemberInput, weekendMemberInput];
+      } catch (err) {
+        Output.printError(err);
+      }
+    }
+  }
 }
 
 export default Input;
