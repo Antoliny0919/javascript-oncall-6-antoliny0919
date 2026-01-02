@@ -31,12 +31,11 @@ export const OnCallMemberValidator = {
       }
     });
     if (weekdayMember.length !== new Set(weekdayMember).size) {
+      console.log(1)
       throw new Error(this.errorMessage);
     }
     if (weekendMember.length !== new Set(weekendMember).size) {
-      throw new Error(this.errorMessage);
-    }
-    if (5 > memberTotalCnt || 35 < memberTotalCnt) {
+      console.log(2)
       throw new Error(this.errorMessage);
     }
   }

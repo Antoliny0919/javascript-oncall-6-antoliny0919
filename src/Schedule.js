@@ -8,6 +8,8 @@ class Schedule {
     this.day = day;
     this.weekdayMember = weekdayMember.split(',');
     this.weekendMember = weekendMember.split(',');
+    this.rememberInitialWeekdayMember = [...this.weekdayMember];
+    this.rememberInitialWeekendMember = [...this.weekendMember];
     this.currentMonthCalendar = new Calendar(month, day);
   }
 
@@ -33,6 +35,12 @@ class Schedule {
       const worker = this.getWorker(day, previousWorker);
       previousWorker = worker;
       Output.printWorkerRecord(worker, day);
+      if (this.weekdayMember.length === 0) {
+        this.weekdayMember = [...this.rememberInitialWeekdayMember];
+      }
+      if (this.weekendMember.length === 0) {
+        this.weekendMember = [...this.rememberInitialWeekendMember];
+      }
     });
   }
 }
