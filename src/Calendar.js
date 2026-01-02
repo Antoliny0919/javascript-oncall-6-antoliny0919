@@ -35,8 +35,11 @@ export class Day {
 
   #isHoliday(month, dayStr, dayNum) {
     const public_holiday = PUBLIC_HOLIDAY[month];
+    if (public_holiday.includes(dayNum)) {
+      this.publicHoliday = true;
+      return true;
+    }
     if (['토', '일'].includes(dayStr)) return true;
-    if (public_holiday.includes(dayNum)) return true;
     return false;
   }
 }
