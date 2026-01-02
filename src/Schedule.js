@@ -1,4 +1,5 @@
 import { Calendar } from './Calendar.js';
+import Output from './Output.js';
 
 
 class Schedule {
@@ -31,6 +32,7 @@ class Schedule {
     dayList.forEach((day) => {
       const worker = this.getWorker(day, previousWorker);
       previousWorker = worker;
+      Output.printWorkerRecord(worker, day);
     });
   }
 }
